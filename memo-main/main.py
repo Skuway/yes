@@ -39,17 +39,18 @@ questions = [q1,q2,q3,q4]
 def new_questions():
     global cur_q
     cur_q = choice(questions)
-    lb_question.setText(cur_q,questions)
-    lb_right_answer.setText(cur_q,gb_answer)
+    lb_question.setText(cur_q.question)
+    lb_right_answer.setText(cur_q.got_right())
     shuffle(radio_buttons)
 
-    radio_buttons[0].setText(cur_q,lb_wrong_ans1)
-    radio_buttons[1].setText(cur_q,lb_wrong_ans2)
-    radio_buttons[2].setText(cur_q,lb_wrong_ans3)
+    radio_buttons[0].setText(cur_q.wrong_answer1)
+    radio_buttons[1].setText(cur_q.wrong_answer2)
+    radio_buttons[2].setText(cur_q.wrong_answer3)
     radio_buttons[3].setText(cur_q.answer)
 
 
-    new_questions()
+    
+new_questions()
 
 
 def check():
@@ -62,7 +63,7 @@ def check():
                 break
     else:
         lb_result.setText("Не вірно")
-        cur_q.got_wrong     
+        cur_q.got_wrong()     
 
 def click_ok():
     if btn_next.text() =="Відповісти":
@@ -136,4 +137,4 @@ def add_question():
 btn_add_question.clicked.connect(add_question)
 
 window.show()
-app.exec()                                 
+app.exec()
